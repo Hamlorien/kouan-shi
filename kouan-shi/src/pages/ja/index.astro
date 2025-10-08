@@ -1,0 +1,71 @@
+---
+// このページは章を選択するためのハブとなります
+---
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>光闇詞 - 章選択</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main class="chapter-selection">
+    <h1 class="main-title">光闇詞</h1>
+    <nav class="chapter-nav">
+      <a href="./prelude" class="nav-button">前詞四十節</a>
+      <a href="./interlude" class="nav-button">中詞三節</a>
+      <a href="./finale" class="nav-button">終節</a>
+    </nav>
+  </main>
+
+</body>
+</html>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Serif JP', serif;
+    background-color: #f4f1ea;
+    background-image: linear-gradient(135deg, #f4f1ea 0%, #e8e2d7 100%);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .chapter-selection {
+    text-align: center;
+  }
+
+  .main-title {
+    font-size: 6vw;
+    font-weight: 700;
+    margin-bottom: 4rem;
+  }
+
+  .chapter-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .nav-button {
+    padding: 1rem 3.5rem;
+    border: 1px solid #333;
+    border-radius: 5px;
+    color: #333;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+  }
+
+  .nav-button:hover {
+    background-color: #333;
+    color: #f4f1ea;
+  }
+</style>

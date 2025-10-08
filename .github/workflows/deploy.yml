@@ -1,0 +1,46 @@
+# GitHub Pagesへのデプロイを自動化するためのワークフロー
+name: Deploy to GitHub Pages
+
+# mainブランチにコードがpushされたときに、このワークフローを実行します
+on:
+  push:
+    branches:
+      - main
+
+# ワークフローの権限を設定
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'kouan-shi/package-lock.json' # package-lock.jsonの場所を指定
+
+      # プロジェクトがサブディレクトリにあるため、作業ディレクトリを指定
+      - name: Install dependencies 📦
+        run: npm install
+        working-directory: ./kouan-shi
+
+      # プロジェクトがサブディレクトリにあるため、作業ディレクトリを指定
+      - name: Build project 🏗️
+        run: npm run build
+        working-directory: ./kouan-shi
+
+      - name: Deploy to GitHub Pages 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # ビルド後の公開ディレクトリを正しく指定
+          publish_dir: ./kouan-shi/dist
+

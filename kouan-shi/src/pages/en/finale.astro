@@ -1,0 +1,100 @@
+---
+// Import the single finale.md file
+import finaleContent from '../../content/scriptures/en/finale/finale.md?raw';
+---
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>The Hymn of Light and Shadow - Finale</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="holy-scripture-layout">
+    <nav class="verse-navigation">
+      <h2>Finale</h2>
+      <ul>
+        <li><a href="#" id="finale-link">Finale</a></li>
+      </ul>
+    </nav>
+    <main class="verse-content">
+      <article id="content-article">
+        <h1>Finale</h1>
+        <p>Please select a verse from the index on the left.</p>
+      </article>
+    </main>
+    <aside class="side-panel">
+      <div class="side-panel-content">
+        <a href="../" class="side-link">Back to Chapter Selection</a>
+      </div>
+    </aside>
+  </div>
+</body>
+</html>
+<style is:global>
+  /* Same styles as prelude.astro */
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
+  body { margin: 0; padding: 0; font-family: 'Noto Serif', serif; background-color: #f4f1ea; color: #333; font-weight: 400; }
+  .holy-scripture-layout { display: flex; height: 100vh; }
+  .verse-navigation { flex: 0 0 280px; border-right: 1px solid #dcd6c8; padding: 2rem; overflow-y: auto; }
+  .verse-navigation h2 { font-weight: 700; margin-top: 0; padding-bottom: 1rem; border-bottom: 1px solid #dcd6c8; }
+  .verse-navigation ul { list-style: none; padding: 0; margin: 0; }
+  .verse-navigation li a { display: block; padding: 0.7rem 0; text-decoration: none; color: #5c5248; transition: background-color 0.2s ease; cursor: pointer; }
+  .verse-navigation li a:hover { color: #333; background-color: rgba(0,0,0,0.03); }
+  .verse-content { flex: 1 1 auto; padding: 4rem; overflow-y: auto; }
+  .verse-content h1 { font-size: 2.5rem; font-weight: 700; margin-top: 0; border-bottom: 1px solid #dcd6c8; padding-bottom: 1rem; margin-bottom: 2rem; }
+  .verse-content p { font-size: 1.1rem; line-height: 2.2; }
+  .verse-content h2 { font-size: 1.8rem; font-weight: 700; margin-top: 2.5rem; }
+  .side-panel { flex: 0 0 280px; border-left: 1px solid #dcd6c8; background-color: rgba(0,0,0,0.01); padding: 2rem; box-sizing: border-box; }
+  .side-panel-content .side-link {
+    display: block;
+    text-decoration: none;
+    color: #5c5248;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #dcd6c8;
+    border-radius: 5px;
+    text-align: center;
+    transition: all 0.2s ease;
+  }
+  .side-panel-content .side-link:hover {
+    background-color: rgba(0,0,0,0.05);
+    color: #333;
+    border-color: #c4bcae;
+  }
+  /* スマートフォン用の表示調整 */
+  @media (max-width: 768px) {
+    .holy-scripture-layout { flex-direction: column; height: auto; }
+    .verse-navigation, .side-panel { flex: 0 0 auto; width: 100%; height: auto; border: none; border-bottom: 1px solid #dcd6c8; box-sizing: border-box; }
+    .side-panel { padding: 1rem; }
+    /* 本文エリアの左右の余白を縮小 */
+    .verse-content { padding: 2rem 1.5rem; } 
+    /* 本文エリアの文字サイズを調整 */
+    .verse-content h1 { font-size: 2rem; }
+    .verse-content p { font-size: 1rem; line-height: 1.9; }
+    .verse-content h2 { font-size: 1.5rem; }
+  }
+</style>
+<script define:vars={{ finaleContent }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const article = document.getElementById('content-article');
+    const finaleLink = document.getElementById('finale-link');
+
+    function parseMarkdown(text) {
+        if (!text) return '';
+        const lines = text.split('\n');
+        const titleLine = lines.shift() || '';
+        const titleMatch = titleLine.match(/##\s*title:\s*"([^"]+)"/);
+        const title = titleMatch ? titleMatch[1] : '';
+        let html = `<h1>${title}</h1>`;
+        const bodyMarkdown = lines.join('\n');
+        html += marked.parse(bodyMarkdown);
+        return html;
+    }
+
+    finaleLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      article.innerHTML = parseMarkdown(finaleContent);
+    });
+  });
+</script>
+
