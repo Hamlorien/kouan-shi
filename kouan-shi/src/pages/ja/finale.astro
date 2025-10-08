@@ -63,12 +63,32 @@ import finaleContent from '../../content/scriptures/ja/finale/finale.md?raw';
   }
   /* スマートフォン用の表示調整 */
   @media (max-width: 768px) {
-    .holy-scripture-layout { flex-direction: column; height: auto; }
-    .verse-navigation, .side-panel { flex: 0 0 auto; width: 100%; height: auto; border: none; border-bottom: 1px solid #dcd6c8; box-sizing: border-box; }
-    .side-panel { padding: 1rem; }
-    /* 本文エリアの左右の余白を縮小 */
-    .verse-content { padding: 2rem 1.5rem; } 
-    /* 本文エリアの文字サイズを調整 */
+    .holy-scripture-layout { 
+      flex-direction: column; /* 縦並びに変更 */
+      height: auto; /* 高さを自動調整 */
+    }
+    .verse-navigation, 
+    .side-panel { 
+      flex: 0 0 auto; 
+      width: 100%; /* 幅を100%に */
+      height: auto; 
+      border: none; 
+      border-bottom: 1px solid #dcd6c8; 
+      box-sizing: border-box;
+      overflow-y: visible; /* スクロールを無効化 */
+    }
+    .verse-navigation {
+      max-height: 40vh; /* 目次エリアの最大高さを設定 */
+      overflow-y: auto; /* 目次エリア内のみスクロールを許可 */
+    }
+    .side-panel { 
+      padding: 1rem; 
+      border-bottom: none; /* 最後のボーダーは不要 */
+    }
+    .verse-content { 
+      padding: 2rem 1.5rem; 
+      overflow-y: visible; /* スクロールを無効化 */
+    } 
     .verse-content h1 { font-size: 2rem; }
     .verse-content p { font-size: 1rem; line-height: 1.9; }
     .verse-content h2 { font-size: 1.5rem; }
