@@ -1,7 +1,7 @@
 # GitHub Pagesへのデプロイを自動化するためのワークフロー
 name: Deploy to GitHub Pages
 
-# mainブランチにコードがpushされたときに、このワークフローを実行します
+# mainブランチにコードがpushされたときに、このワークローを実行します
 on:
   push:
     branches:
@@ -43,4 +43,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # ビルド後の公開ディレクトリを正しく指定
           publish_dir: ./kouan-shi/dist
-
+          # カスタムドメインを設定するためのCNAMEファイルを作成
+          cname: www.koan-shi.com

@@ -11,8 +11,8 @@ export default defineConfig({
   },
 
   // GitHub Pagesでサイトを公開するための設定
-  site: 'https://Hamlorien.github.io', // 基本となるドメイン
-  // 公開用ビルドの時だけリポジトリ名をbaseに設定し、ローカル開発時はルートパスにする
-  base: process.env.NODE_ENV === 'production' ? '/kouan-shi' : '/',
+  // 独自ドメインに変更
+  site: 'https://www.koan-shi.com',
+  // 独自ドメインではリポジトリ名は不要になるため、baseは常にルートパスにする
+  base: '/',
 });
-
